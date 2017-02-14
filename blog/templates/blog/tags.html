@@ -1,0 +1,32 @@
+{% extends './base.html' %}
+
+{% load static %}
+
+{% block nav-tag %}active{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{% static 'blog/css/tag.css' %}">
+
+    <ul class="tags green">
+        {% for tag in tags %}
+            <li style="margin-right: 30px"><a href="#{{ tag.0 }}">{{ tag.0 }} <span>{{ tag.1 | length}}</span></a></li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    {% for tag in tags %}
+        <div data-aos="fade-up">
+            <h4  id="{{ tag.0 }}">{{ tag.0 }}</h4>
+            <ul>
+                {% for element in tag.1 %}
+                    <li> {{ element.created  }}  -- <a href="{% url 'blog:entry_detail' element.slug %}"> {{ element }} </a></li>
+
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+
+
+
+{% endblock %}

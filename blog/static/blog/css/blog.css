@@ -1,0 +1,103 @@
+/*
+* @Author: rhys
+* @Date:   2016-11-01 15:24:06
+* @Last Modified by:   rhys
+* @Last Modified time: 2016-11-01 16:36:23
+*/
+
+/*
+ * Globals
+ */
+
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #442c2f;
+  padding-top: 30px;
+    background: #f9f9f9;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  margin-top: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #333;
+}
+
+/*
+ * Footer
+ */
+
+.blog-footer {
+  padding: 40px 0;
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+}
+.blog-footer p:last-child {
+  margin-bottom: 0;
+}
+
+
+
+/* 创建一个简单白色盒子,并添加阴影 */
+
+.entrybox {
+
+    /*position: relative;*/
+    /*display: inline-block;*/
+    padding: 18px 20px;
+    margin:10px 20px 10px 10px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* 创建隐藏的伪元素 */
+
+
+/* 最终样式包含阴影 */
+
+.entrybox::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    left: 0px;
+    top: 0px;
+    /*background: #000;*/
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.entrybox:hover {
+    -webkit-transform: scale(1.05, 1.05);
+    transform: scale(1.05, 1.05);
+}
+
+.entrybox:hover::after {
+    opacity: 1;
+}
+
+.blog-post-tile{
+    color: rgba(3, 10, 3, 0.65);
+}
+
+
+a:hover {
+    text-decoration: none;
+}
+
+.blog-post-meta {
+    color: rgba(3, 10, 3, 0.4);
+}
