@@ -54,7 +54,7 @@ class Entry(models.Model):
 
     tags = models.ManyToManyField(Tag)
     category = models.ForeignKey(Category)
-    teaser = models.ImageField(upload_to="upload/teaser")
+    teaser = models.ImageField(upload_to="uploads/teaser")
 
     objects = EntryQuerySet.as_manager()
 
