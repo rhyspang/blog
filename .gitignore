@@ -2,6 +2,7 @@
 .idea/
 venv/
 media/
+/static/
 *.sqlite3
 migrations/
-
+blog_uwsgi.ini
