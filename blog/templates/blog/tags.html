@@ -20,7 +20,7 @@
             <h4  id="{{ tag.0 }}">{{ tag.0 }}</h4>
             <ul>
                 {% for element in tag.1 %}
-                    <li> {{ element.created  }}  -- <a href="{% url 'blog:entry_detail' element.slug %}"> {{ element }} </a></li>
+                    <li> {{ element.created  }}  -- <span class="blog-post-tile"><a href="{% url 'blog:entry_detail' element.slug %}"> {{ element }} </a></span></li>
 
                 {% endfor %}
             </ul>

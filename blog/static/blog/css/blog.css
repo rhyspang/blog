@@ -32,7 +32,7 @@ h6, .h6 {
  * Footer
  */
 
-.blog-footer {
+.blog-footer, .blog-footer a {
   padding: 40px 0;
   color: #999;
   text-align: center;
@@ -89,10 +89,9 @@ h6, .h6 {
     opacity: 1;
 }
 
-.blog-post-tile{
+a {
     color: rgba(3, 10, 3, 0.65);
 }
-
 
 a:hover {
     text-decoration: none;
@@ -100,4 +99,25 @@ a:hover {
 
 .blog-post-meta {
     color: rgba(3, 10, 3, 0.4);
+}
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 2000;
+}
+
+.collapse a {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.navbar-header {
+    font-weight: bold;
+    color: #000;
+}
+
+.about {
+    font-style: italic;
 }
