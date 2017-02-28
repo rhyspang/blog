@@ -4,12 +4,16 @@
 
 $(document).ready(function(){
     // add bootstrap responsive class
-    $("div img").addClass('img-responsive');
-    $("table").addClass("table")
-    $("table").wrap('<div class="table-responsive"></div>')
+    $("img").addClass('img-responsive');
+    $("img").removeAttr("style");
     $("img").wrap(function () {
         return '<a href=' + $(this)[0].src + ' data-lightbox="image-1" ></a>';
     });
+
+    $("table").addClass("table");
+    $("table").removeAttr("style");
+    $("table").wrap('<div class="table-responsive"></div>')
+
 
 
     var backButton = $('.back-to-top');
