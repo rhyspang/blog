@@ -1,41 +1,13 @@
 {% extends './base.html' %}
-
 {% load static %}
-
 {% block body %}
-
     <div  class="row">
-        <div  class="col-md-9 blog-main">
-
-            {% for entry in post_list %}
-                <div data-aos="fade-up" >
-                    <div class="entrybox" onclick="window.location.href='{% url 'blog:entry_detail' slug=entry.slug %}'">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <h2 class="blog-post-tile"><a href="{% url 'blog:entry_detail' slug=entry.slug %}">{{ entry.title }}</a></h2>
-                                <p class="blog-post-meta"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>{{ entry.created }} | <i class="fa fa-tag" aria-hidden="true"></i>Tagged under {{ entry.tags.all|join:", " }}</p>
-                            </div>
-
-                            <div class="col-md-4">
-                                <img class="img-responsive" style="border-radius: 3%" src="{{ entry.teaser.url }}" alt="detail" >
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-            {% endfor %}
-            <nav>
-                <ul class="pager">
-                    {% if post_list.has_previous %}
-                        <li><a href="?page={{ post_list.previous_page_number }}">Previous</a></li>
-                    {% endif %}
-                    {% if post_list.has_next %}
-                        <li><a href="?page={{ post_list.next_page_number }}">Next</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
+        <div  class="col-md-9">
+            {% include './secs/articles.html' %}
+            {% include './secs/pagination.html' %}
         </div>
-
-        {% include './sidebar.html' %}
+        <div data-aos="fade-left"  class="col-md-3 blog-sidebar visible-lg">
+            {% include './secs/sidebar.html' %}
+        </div><!-- /.blog-sidebar -->
     </div>
 {% endblock %}

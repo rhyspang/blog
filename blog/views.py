@@ -2,27 +2,44 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.views import generic
 
-from blog.models import Entry, Tag
+from blog.models import Entry, Tag, Category
 from . import models
+from django.conf import settings
 
 
-class BlogIndex(generic.ListView):
-    queryset = models.Entry.objects.published()
-    template_name = 'blog/index.html'
-    paginate_by = 2
+def global_settings(request):
+    posts = Entry.objects.published()
+    archives_list = archives(posts)
+    tags_list = Tag.objects.all()
+    categories_list = Category.objects.all()
+    top_three = Entry.objects.published()[:3]
+    return dict(settings.WEB_INFO, **locals())
+
+
+def paginate(request, article_list):
+    paginator = Paginator(article_list, 8)
+    page = request.GET.get('page')
+    try:
+        page_list = paginator.page(page)
+    except PageNotAnInteger:
+        page_list = paginator.page(1)
+    except EmptyPage:
+        page_list = paginator.page(paginator.num_pages)
+    return page_list
+
+
+def archives(articles):
+    archives_list = []
+    date_list = articles.dates('date_published', 'month', order='DESC')
+    for date in date_list:
+        archives_list.append((date.year, date.month))
+    return archives_list
 
 
 def home(request):
-    posts = models.Entry.objects.published()
-    paginator = Paginator(posts, 10)
-    page = request.GET.get('page')
-    try:
-        post_list = paginator.page(page)
-    except PageNotAnInteger:
-        post_list = paginator.page(1)
-    except EmptyPage:
-        post_list = paginator.page(paginator.num_pages)
-    return render(request, 'blog/index.html', {'post_list': post_list})
+    posts = Entry.objects.published()
+    articles_list = paginate(request, posts)
+    return render(request, 'blog/index.html', locals())
 
 
 class BlogDetail(generic.DetailView):
@@ -34,7 +51,7 @@ def cat_view(request):
     cats = {}
     categories = models.Category.objects.all()
     for category in categories:
-        cats[category.cat_name] = Entry.objects.filter(category=category)
+        cats[category.name] = Entry.objects.filter(category=category)
     return render(request, 'blog/categories.html', {'cats': sorted(cats.items())})
 
 
@@ -52,3 +69,23 @@ def tags_view(request):
 
 def about_view(request):
     return render(request, 'blog/about.html')
+
+
+def show_by_tag(request, tag_slug):
+    articles_list = Entry.objects.published().filter(tags__slug__exact=tag_slug)
+    articles_list = paginate(request, articles_list)
+    return render(request, 'blog/index.html', locals())
+
+
+def show_by_archive(request, year, month):
+    articles_list = Entry.objects.published() \
+        .filter(date_published__year=year) \
+        .filter(date_published__month=month)
+    articles_list = paginate(request, articles_list)
+    return render(request, 'blog/index.html', locals())
+
+
+def show_by_category(request, category_slug):
+    articles_list = Entry.objects.published().filter(category__slug=category_slug)
+    articles_list = paginate(request, articles_list)
+    return render(request, 'blog/index.html', locals())

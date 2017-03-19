@@ -9,8 +9,6 @@
     <link href="{% static "blog/css/lightbox.min.css" %}" rel="stylesheet">
     <script src="{% static "blog/js/lightbox.min.js" %}"></script>
 
-
-
     <link href="http://apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css" rel="stylesheet">
     <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
     <script src="{% static 'blog/js/blog.js' %}"></script>
@@ -21,7 +19,13 @@
 
     <div data-aos="zoom-out" class="entrybox">
         <h1 class="blog-post-tile">{{ entry.title }}</h1>
-        <p class="blog-post-meta"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>{{ entry.created }} | <i class="fa fa-tag" aria-hidden="true"></i>Tagged under {{ entry.tags.all|join:", " }}</p>
+        <p class="blog-post-meta"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>{{ entry.date_created }} |
+            <i class="fa fa-tag" aria-hidden="true"></i>
+            Tagged under
+            {% for tag in entry.tags.all %}
+                <a href="{% url 'blog:show_by_tag' tag.slug %}">{{ tag.name }} </a>
+            {% endfor %}
+        </p>
         {% autoescape off %}
           {{ entry.body}}
         {% endautoescape %}

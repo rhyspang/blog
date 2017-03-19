@@ -23,9 +23,7 @@ from blog.uploader import upload_image
 
 urlpatterns = [
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-
-    # url(r'^ueditor/', include('DjangoUeditor.urls')),
-    url(r'^', include('blog.urls')),
+    url(r'^', include('blog.urls', namespace='blog')),
     url(r'^grappelli', include('grappelli.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^uploadimg/', upload_image),

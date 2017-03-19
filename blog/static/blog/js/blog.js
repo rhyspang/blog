@@ -4,15 +4,15 @@
 
 $(document).ready(function(){
     // add bootstrap responsive class
-    $("img").addClass('img-responsive');
-    $("img").removeAttr("style");
-    $("img").wrap(function () {
+    $(".entrybox img").addClass('img-responsive');
+    $(".entrybox img").removeAttr("style");
+    $(".entrybox img").wrap(function () {
         return '<a href=' + $(this)[0].src + ' data-lightbox="image-1" ></a>';
     });
 
-    $("table").addClass("table");
-    $("table").removeAttr("style");
-    $("table").wrap('<div class="table-responsive"></div>')
+    $(".entrybox table").addClass("table");
+    $(".entrybox table").removeAttr("style");
+    $(".entrybox table").wrap('<div class="table-responsive"></div>')
 
 
 

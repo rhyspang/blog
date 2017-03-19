@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import re
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -70,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'blog.views.global_settings',
             ],
         },
     },
@@ -127,12 +126,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, 'static'),
-    # 'var/www/static',
-]
-
-
 # grappelli setting
 
 GRAPPELLI_ADMIN_TITLE = "Rhys' Blog"
@@ -146,8 +139,8 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
     },
 }
-MEDIA_URL = "/uploader/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/uploads/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_JQUERY_URL = 'blog/js/jquery.min.js'
@@ -215,4 +208,12 @@ CKEDITOR_CONFIGS = {
                 'elementspath'
             ]),
     }
+}
+
+
+# web info
+WEB_INFO = {
+    'github': 'https://github.com/rhyspang',
+    'email': 'rhyspang@qq.com',
+    'weibo': 'http://weibo.com/u/5718747585?refer_flag=1001030201_',
 }

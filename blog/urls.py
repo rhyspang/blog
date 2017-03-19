@@ -4,7 +4,7 @@
 # @Author  : rhys
 # @File    : urls.py
 # @Software: PyCharm
-from django.conf.urls import url, include
+from django.conf.urls import url
 
 from blog import feed
 from . import views
@@ -17,4 +17,9 @@ urlpatterns = [
     url(r'^categories/', views.cat_view,  name='categories'),
     url(r'^tags/', views.tags_view, name='tags'),
     url(r'^about/', views.about_view, name='about'),
+
+    url(r'^tag/(?P<tag_slug>\S+)/$', views.show_by_tag, name='show_by_tag'),
+    url(r'^category/(?P<category_slug>\S+)/$', views.show_by_category, name='show_by_category'),
+    url(r'^archive/(?P<year>\d{4})/(?P<month>\d{1,2})/$', views.show_by_archive, name='show_by_archive'),
+
 ]

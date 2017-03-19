@@ -18,7 +18,7 @@
                     <div class="panel-body">
                         <ul>
                             {% for element in v %}
-                                <li> {{ element.created |date:"Y年m月d日 H时i分" }}  -- <a href="{% url 'blog:entry_detail' element.slug %}"> {{ element }} </a></li>
+                                <li> {{ element.date_created |date:"Y年m月d日 H时i分" }}  -- <a href="{% url 'blog:entry_detail' element.slug %}"> {{ element }} </a></li>
                             {% endfor %}
                         </ul>
                     </div>
