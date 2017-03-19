@@ -1,0 +1,29 @@
+<div class="sidebar">
+    <div class="follow-me">
+        <h3>Follow me</h3>
+        <hr>
+        <ol>
+            <li><a href="{{ github }}" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="{{ weibo }}" target="_blank"><i class="fa fa-weibo fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="/feed/" target="_blank"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="mailto:{{ email }}"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a></li>
+        </ol>
+    </div>
+
+    <div class="tag-cloud">
+        <h3>Tags</h3>
+        <hr>
+        <div class="panel">
+            {% for tag in tags_list %}
+                 <a href="{% url 'blog:show_by_tag' tag.slug %}">{{ tag.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="achive">
+        <h3>Archives</h3>
+        <hr>
+        {% for archive in archives_list %}
+        <p><a href="{% url 'blog:show_by_archive' archive.0 archive.1 %}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>{{ archive.0 }}年{{ archive.1 }}月文章归档</a></p>
+        {% endfor %}
+    </div>
+</div>

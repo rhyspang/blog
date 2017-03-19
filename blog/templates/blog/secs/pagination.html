@@ -1,0 +1,11 @@
+<nav>
+    <ul class="pager">
+        {% if articles_list.has_previous %}
+            <li><a href="?page={{ articles_list.previous_page_number }}">Previous</a></li>
+        {% endif %}
+
+        {% if articles_list.has_next %}
+            <li><a href="?page={{ articles_list.next_page_number }}">Next</a></li>
+        {% endif %}
+    </ul>
+</nav>

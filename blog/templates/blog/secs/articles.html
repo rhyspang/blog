@@ -1,0 +1,24 @@
+{% for entry in articles_list %}
+    <div data-aos="fade-up" >
+        <div class="entrybox" onclick="window.location.href='{% url 'blog:entry_detail' slug=entry.slug %}'">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="blog-post-tile"><a href="{% url 'blog:entry_detail' slug=entry.slug %}">{{ entry.title }}</a></h2>
+                    <p class="blog-post-meta"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>{{ entry.date_published }} | <i class="fa fa-tag" aria-hidden="true"></i>Tagged under {{ entry.tags.all|join:", " }}</p>
+
+                    <p class="description">{{ entry.description }}</p>
+
+                    <p class="blog-active-info blog-post-meta">
+                        <i class="fa fa-comment-o comments" aria-hidden="true"></i> {{ entry.comment_set.all.count }} Comments
+                        <i class="fa fa-eye watches" aria-hidden="true"> {{ entry.click_count }} Watches</i>
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <img class="img-responsive" style="border-radius: 3%" src="{{ entry.teaser.url }}" alt="detail" >
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+{% endfor %}

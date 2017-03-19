@@ -6,3 +6,4 @@ media/
 *.sqlite3
 migrations/
 blog_uwsgi.ini
+/uploads

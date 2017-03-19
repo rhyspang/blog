@@ -1,0 +1,48 @@
+{% load static %}
+<div id="search" class="cd-main-search">
+    <form>
+        <input type="search" placeholder="Search...">
+        <div class="cd-select">
+            <span>in</span>
+            <select name="select-category">
+                <option value="all-categories">all Categories</option>
+                {% for category in categories_list %}
+                <option value="{{ category.slug }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <span class="selected-value">all Categories</span>
+        </div>
+    </form>
+    <div class="cd-search-suggestions">
+        <div class="news">
+            <h3>Latest Posts</h3>
+            <ul>
+                {% for item in top_three %}
+                <li>
+                    <a class="image-wrapper" href="{% url 'blog:entry_detail' item.slug %}"><img src="/uploads/{{ item.teaser }}" alt="News image"></a>
+                    <h4><a class="cd-nowrap" href="{% url 'blog:entry_detail' item.slug %}">{{ item.description }}</a></h4>
+                    <time datetime="{{ item.date_published }}">{{ item.date_published }}</time>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+        <!-- .news -->
+{#        <div class="quick-links">#}
+{#            <h3>Quick Links</h3>#}
+{#            <ul>#}
+{#                <li><a href="#0">Find a store</a></li>#}
+{#                <li><a href="#0">Accessories</a></li>#}
+{#                <li><a href="#0">Warranty info</a></li>#}
+{#                <li><a href="#0">Support</a></li>#}
+{#                <li><a href="#0">Contact us</a></li>#}
+{#            </ul>#}
+{#        </div>#}
+        <!-- .quick-links -->
+    </div>
+    <!-- .cd-search-suggestions -->
+    <a href="#0" class="close cd-text-replace">Close Form</a>
+</div>
+<!-- .cd-main-search -->
+<div class="cd-cover-layer"></div>
+<!-- cover main content when search form is open -->
