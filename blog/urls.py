@@ -7,6 +7,7 @@
 from django.conf.urls import url
 
 from blog import feed
+from blog.views import full_search
 from . import views
 
 app_name = 'blog'
@@ -22,4 +23,5 @@ urlpatterns = [
     url(r'^category/(?P<category_slug>\S+)/$', views.show_by_category, name='show_by_category'),
     url(r'^archive/(?P<year>\d{4})/(?P<month>\d{1,2})/$', views.show_by_archive, name='show_by_archive'),
 
+    url(r'^search/$', full_search, name='search'),
 ]

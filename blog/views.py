@@ -1,6 +1,9 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.views import generic
+from haystack.forms import SearchForm
+from haystack.query import SearchQuerySet
+from haystack.views import SearchView
 
 from blog.models import Entry, Tag, Category
 from . import models
@@ -49,19 +52,19 @@ class BlogDetail(generic.DetailView):
 
 def cat_view(request):
     cats = {}
-    categories = models.Category.objects.all()
+    categories = Category.objects.all()
     for category in categories:
-        cats[category.name] = Entry.objects.filter(category=category)
+        cats[category.name] = Entry.objects.published().filter(category=category)
     return render(request, 'blog/categories.html', {'cats': sorted(cats.items())})
 
 
 def tags_view(request):
     tagsdict = {}
-    tag_list = models.Tag.objects.all()
+    tag_list = Tag.objects.all()
     for tag in tag_list:
         tagsdict[tag] = []
 
-    for entry in Entry.objects.all():
+    for entry in Entry.objects.published():
         for tag in entry.tags.all():
             tagsdict[tag].append(entry)
     return render(request, 'blog/tags.html', {'tags': sorted(tagsdict.items(), key=lambda x: str(x[0]).lower())})
@@ -74,7 +77,7 @@ def about_view(request):
 def show_by_tag(request, tag_slug):
     articles_list = Entry.objects.published().filter(tags__slug__exact=tag_slug)
     articles_list = paginate(request, articles_list)
-    return render(request, 'blog/index.html', locals())
+    return render(request, 'blog/show_by_tag.html', locals())
 
 
 def show_by_archive(request, year, month):
@@ -82,10 +85,22 @@ def show_by_archive(request, year, month):
         .filter(date_published__year=year) \
         .filter(date_published__month=month)
     articles_list = paginate(request, articles_list)
-    return render(request, 'blog/index.html', locals())
+    return render(request, 'blog/show_by_archive.html', locals())
 
 
 def show_by_category(request, category_slug):
     articles_list = Entry.objects.published().filter(category__slug=category_slug)
     articles_list = paginate(request, articles_list)
-    return render(request, 'blog/index.html', locals())
+    return render(request, 'blog/show_by_category.html', locals())
+
+
+def full_search(request):
+    form = SearchForm(request.GET)
+    keywords = request.GET['q']
+    articles_list = []
+    search_result = form.search()
+    for item in search_result:
+        articles_list.append(item.object)
+
+    return render(request, 'blog/search_result.html', locals())
+

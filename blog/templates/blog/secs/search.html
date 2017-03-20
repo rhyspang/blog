@@ -1,7 +1,7 @@
 {% load static %}
 <div id="search" class="cd-main-search">
-    <form>
-        <input type="search" placeholder="Search...">
+    <form action="{% url 'blog:search' %}">
+        <input name="q" type="search" placeholder="Search...">
         <div class="cd-select">
             <span>in</span>
             <select name="select-category">

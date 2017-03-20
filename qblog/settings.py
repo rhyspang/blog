@@ -1,3 +1,5 @@
+# -*-coding=utf8 -*-
+
 """
 Django settings for qblog project.
 
@@ -15,7 +17,6 @@ import re
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -26,7 +27,6 @@ SECRET_KEY = 'ahy=yj#2-hiroy8io*0*dy)p&5kedc8bq85pb&gcg#+#3r%ae='
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'haystack',
     'blog.apps.BlogConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -76,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'qblog.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
@@ -86,7 +86,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -106,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -120,7 +118,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
@@ -129,7 +126,6 @@ STATIC_URL = '/static/'
 # grappelli setting
 
 GRAPPELLI_ADMIN_TITLE = "Rhys' Blog"
-
 
 # ckeditor configuration
 
@@ -144,7 +140,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_JQUERY_URL = 'blog/js/jquery.min.js'
-
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -167,7 +162,8 @@ CKEDITOR_CONFIGS = {
                        'Language']},
             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
             {'name': 'insert',
-             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe', 'CodeSnippet']},
+             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe',
+                       'CodeSnippet']},
             '/',
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
@@ -210,10 +206,19 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-
 # web info
 WEB_INFO = {
     'github': 'https://github.com/rhyspang',
     'email': 'rhyspang@qq.com',
     'weibo': 'http://weibo.com/u/5718747585?refer_flag=1001030201_',
 }
+
+# full text search
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'blog.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+# 自动更新索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

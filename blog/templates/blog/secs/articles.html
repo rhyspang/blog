@@ -4,7 +4,11 @@
             <div class="row">
                 <div class="col-md-8">
                     <h2 class="blog-post-tile"><a href="{% url 'blog:entry_detail' slug=entry.slug %}">{{ entry.title }}</a></h2>
-                    <p class="blog-post-meta"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>{{ entry.date_published }} | <i class="fa fa-tag" aria-hidden="true"></i>Tagged under {{ entry.tags.all|join:", " }}</p>
+                    <p class="blog-post-meta"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>{{ entry.date_published }} | <i class="fa fa-tag" aria-hidden="true"></i>Tagged under
+                        {% for tag in entry.tags.all %}
+                            <a href="{% url 'blog:show_by_tag' tag.slug %}">{{ tag.name }} </a>
+                        {% endfor %}
+                    </p>
 
                     <p class="description">{{ entry.description }}</p>
 

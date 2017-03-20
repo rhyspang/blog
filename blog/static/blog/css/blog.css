@@ -121,14 +121,14 @@ a:hover {
         padding: 15px;
     }
 
-    .container, .col-md-9  {
+    main>.container, .col-md-9  {
         padding: 0;
         margin:0;
     }
 
-    .main-content {
-        margin-top: 0;
-    }
+    /*.main-content {*/
+        /*margin-top: 0;*/
+    /*}*/
 
     .img-logo {
         position: relative;
@@ -208,3 +208,7 @@ a:hover {
 .tag-cloud a:nth-child(8n) { background: #83AF9B }
 .tag-cloud a:first-child { background: #036564 }
 .tag-cloud a:last-child { background: #3299BB }
+
+.subtitle {
+    padding-left: 40px;
+}

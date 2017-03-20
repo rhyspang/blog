@@ -3,6 +3,7 @@
 {% block body %}
     <div  class="row">
         <div  class="col-md-9">
+            {% block subject %}{% endblock %}
             {% include './secs/articles.html' %}
             {% include './secs/pagination.html' %}
         </div>
