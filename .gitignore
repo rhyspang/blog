@@ -7,4 +7,4 @@ media/
 migrations/
 blog_uwsgi.ini
 /uploads
-/whoosh_index/
+/whoosh_index

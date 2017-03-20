@@ -1,0 +1,9 @@
+{% extends './index.html' %}
+{% block subject %}
+    {% if articles_list %}
+        <h2 class="subtitle">Search Result for {{ keywords }}</h2>
+        <hr>
+    {% else %}
+        <h2 class="subtitle">No Search Result for {{ keywords }}</h2>
+    {% endif %}
+{% endblock %}
