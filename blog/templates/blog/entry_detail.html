@@ -29,7 +29,9 @@
         {% autoescape off %}
           {{ entry.body}}
         {% endautoescape %}
-
         <hr>
+
+        {% include './secs/comment.html' %}
+
     </div>
 {% endblock %}
