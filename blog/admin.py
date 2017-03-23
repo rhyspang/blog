@@ -1,19 +1,7 @@
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 from django.contrib import admin
-
 from .models import Entry, Tag, Category, Comment
-
-
-#
-# class PostAdminForm(forms.ModelForm):
-#     content = forms.CharField(widget=CKEditorWidget())
-#     class Meta:
-#         model = Entry
-
-
-# class PostAmin(admin.ModelAdmin):
-#     form = PostAdminForm
 
 
 class EntryAdmin(admin.ModelAdmin):
@@ -22,7 +10,15 @@ class EntryAdmin(admin.ModelAdmin):
     body = forms.CharField(widget=CKEditorWidget())
 
 
+class TagAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+
+
 admin.site.register(Entry, EntryAdmin)
-admin.site.register(Tag)
-admin.site.register(Category)
+admin.site.register(Tag, TagAdmin)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Comment)

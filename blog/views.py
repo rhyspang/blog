@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from haystack.forms import SearchForm
 from haystack.query import SearchQuerySet
@@ -48,6 +48,13 @@ def home(request):
 class BlogDetail(generic.DetailView):
     model = models.Entry
     template_name = 'blog/entry_detail.html'
+
+
+def detail(request, slug):
+    article = get_object_or_404(Entry, slug=slug)
+    article.click_count += 1
+    article.save()
+    return render(request, 'blog/entry_detail.html', locals())
 
 
 def cat_view(request):
@@ -101,6 +108,5 @@ def full_search(request):
     search_result = form.search()
     for item in search_result:
         articles_list.append(item.object)
-
     return render(request, 'blog/search_result.html', locals())
 

@@ -17,18 +17,16 @@
 
     <div class="back-to-top"><i class="fa fa-arrow-up fa-2x" aria-hidden="true"></i></div>
 
-    <div data-aos="zoom-out" class="entrybox">
-        <h1 class="blog-post-tile">{{ entry.title }}</h1>
-        <p class="blog-post-meta"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>{{ entry.date_created }} |
+    <div data-aos="zoom-out" class="entrybox" id="content">
+        <h1 class="blog-post-tile">{{ article.title }}</h1>
+        <p class="blog-post-meta"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>{{ article.date_created }} |
             <i class="fa fa-tag" aria-hidden="true"></i>
             Tagged under
-            {% for tag in entry.tags.all %}
+            {% for tag in article.tags.all %}
                 <a href="{% url 'blog:show_by_tag' tag.slug %}">{{ tag.name }} </a>
             {% endfor %}
         </p>
-        {% autoescape off %}
-          {{ entry.body}}
-        {% endautoescape %}
+          {{ article.body | safe}}
         <hr>
 
         {% include './secs/comment.html' %}

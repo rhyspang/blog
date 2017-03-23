@@ -157,6 +157,7 @@ a:hover {
 .follow-me ol {
     display: inline-block;
     margin-top: 10px;
+    list-style: none;
 }
 
 .follow-me li {
@@ -211,4 +212,8 @@ a:hover {
 
 .subtitle {
     padding-left: 40px;
+}
+
+#content ol,ul {
+    margin-left: 40px;
 }
