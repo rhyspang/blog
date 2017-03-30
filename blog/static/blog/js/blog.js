@@ -14,17 +14,20 @@ $(document).ready(function(){
     $(".entrybox table").removeAttr("style");
     $(".entrybox table").wrap('<div class="table-responsive"></div>')
 
+    var backButton = $('#backTop'),
+        scrollbar = $('html, body'),
+        win = $(window);
 
-
-    var backButton = $('.back-to-top');
     backButton.on('click', function () {
-        $('html, body').animate({
-            scrollTop:0
-        }, 800)
+        if (win.scrollTop() !== 0 && !scrollbar.is(':animated')) {
+            scrollbar.animate({
+                scrollTop:0
+            }, 800)
+        }
     });
 
-    $(window).on('scroll', function () {
-        if ($(window).scrollTop() > $(window).height()) {
+    win.on('scroll', function () {
+        if (win.scrollTop() > win.height()) {
             backButton.fadeIn();
         }else {
             backButton.fadeOut();
@@ -32,5 +35,6 @@ $(document).ready(function(){
     });
 
     $(window).trigger('scroll');
+
 });
 

@@ -25,6 +25,7 @@
 
     <!-- Custom styles for thispy  template -->
     <link href="{% static "blog/css/blog.css" %}" rel="stylesheet">
+    <link href="{% static "blog/css/toolbar.css" %}" rel="stylesheet">
     <!-- Resource style -->
     <script src="{% static 'blog/js/modernizr.js' %}"></script>
     <!-- Modernizr -->
@@ -42,6 +43,8 @@
 </main>
 {% include './secs/search.html' %}
 {% include './secs/footer.html' %}
+
+{% include './secs/toolbar.html' %}
 
 <!-- Bootstrap core JavaScript
    ================================================== -->

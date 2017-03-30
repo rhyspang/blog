@@ -1,0 +1,85 @@
+@import 'mixin';
+
+$toolbar-size: 42px;
+
+.toolbar {
+  position: fixed;
+  right: 10px;
+  bottom: 5px;
+  z-index: 999;
+}
+
+.toolbar-item, .toolbar-btn, .toolbar-icon, .toolbar-text {
+  width: $toolbar-size;
+  height:$toolbar-size;
+}
+
+.toolbar-item {
+  position: relative;
+  margin-top: 1px;
+  display: block;
+  &:hover {
+    .toolbar-icon {
+      top:$toolbar-size;
+    }
+    .toolbar-text {
+      top: 0;
+    }
+
+    .toolbar-layer {
+      @include scale(1);
+      @include opacity(1);
+    }
+  }
+}
+
+.toolbar-btn {
+  position: absolute;
+  left:0;
+  top:0;
+  overflow: hidden;
+}
+
+.toolbar-icon, .toolbar-text {
+  position: absolute;
+  left: 0;
+  text-align: center;
+  @include transition(top 1s);
+  color: rgba(3, 10, 3, 0.85);
+}
+
+.toolbar-icon {
+  top: 0;
+  //background-color: #d0d6d9;
+  font-size: 30px;
+  line-height: $toolbar-size;
+}
+
+.toolbar-text {
+  top: $toolbar-size;
+  background-color: #dae4e9;
+  font-weight: bold;
+  color: #FE4365;
+  font-size: 12px;
+  padding-top: 12px;
+  line-height:1.2;
+}
+
+.toolbar-layer {
+  position: absolute;
+  right: $toolbar-size;
+  bottom:0px;
+  width: 172px;
+  background-image: url("../images/wechatqr.png");
+
+  @include scale(0.01);
+  @include opacity(0);
+  @include transform-origin(100% 100%);
+  @include transition(all 1s);
+}
+
+.toolbar-layer-weixin {
+  height:169px;
+  background-position: 0 0;
+}
+

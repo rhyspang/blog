@@ -1,0 +1,38 @@
+/*
+* @Author: rhyspang
+* @Date:   2017-03-24 15:23:31
+* @Last Modified by:   rhyspang
+* @Last Modified time: 2017-03-24 15:24:31
+*/
+
+
+
+@mixin transition($transition) {
+	-webkit-transition: $transition;
+	-moz-transition: $transition;
+	-ms-transition: $transition;
+	-o-transition: $transition;
+	transition: $transition;
+}
+
+@mixin transform-origin($origin) {
+	-webkit-transform-origin: $origin;
+	-moz-transform-origin: $origin;
+	-ms-transform-origin: $origin;
+	-o-transform-origin: $origin;
+	transform-origin: $origin;
+}
+
+@mixin scale($scale) {
+	-webkit-transform: scale($scale);
+	-moz-transform: scale($scale);
+	-ms-transform: scale($scale);
+	-o-transform: scale($scale);
+	transform: scale($scale);
+}
+
+
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	filter: alpha(opacity=$opacity * 100);
+}

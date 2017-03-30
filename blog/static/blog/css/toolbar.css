@@ -1,0 +1,105 @@
+/*
+* @Author: rhyspang
+* @Date:   2017-03-24 15:23:31
+* @Last Modified by:   rhyspang
+* @Last Modified time: 2017-03-24 15:24:31
+*/
+.toolbar {
+  position: fixed;
+  right: 10px;
+  bottom: 5px;
+  z-index: 999;
+}
+
+.toolbar-item, .toolbar-btn, .toolbar-icon, .toolbar-text {
+  width: 42px;
+  height: 42px;
+}
+
+.toolbar-item {
+  position: relative;
+  margin-top: 1px;
+  display: block;
+}
+.toolbar-item:hover .toolbar-icon {
+  top: 42px;
+}
+.toolbar-item:hover .toolbar-text {
+  top: 0;
+}
+.toolbar-item:hover .toolbar-layer {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+.toolbar-btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
+
+.toolbar-icon, .toolbar-text {
+  position: absolute;
+  left: 0;
+  text-align: center;
+  -webkit-transition: top 1s;
+  -moz-transition: top 1s;
+  -ms-transition: top 1s;
+  -o-transition: top 1s;
+  transition: top 1s;
+  color: rgba(3, 10, 3, 0.85);
+}
+
+.toolbar-icon {
+  top: 0;
+  font-size: 30px;
+  line-height: 42px;
+}
+
+.toolbar-text {
+  top: 42px;
+  background-color: #dae4e9;
+  font-weight: bold;
+  color: #FE4365;
+  font-size: 12px;
+  padding-top: 12px;
+  line-height: 1.2;
+}
+
+.toolbar-layer {
+  position: absolute;
+  right: 42px;
+  bottom: 0px;
+  width: 172px;
+  background-image: url("../images/wechatqr.png");
+  -webkit-transform: scale(0.01);
+  -moz-transform: scale(0.01);
+  -ms-transform: scale(0.01);
+  -o-transform: scale(0.01);
+  transform: scale(0.01);
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transform-origin: 100% 100%;
+  -moz-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  -o-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+
+.toolbar-layer-weixin {
+  height: 169px;
+  background-position: 0 0;
+}
+
+/*# sourceMappingURL=toolbar.css.map */
