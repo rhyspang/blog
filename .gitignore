@@ -8,3 +8,4 @@ migrations/
 blog_uwsgi.ini
 /uploads
 /whoosh_index
+！/teaser/default.png

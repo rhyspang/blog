@@ -15,6 +15,5 @@ class LatestEntriesFeed(Feed):
     link = "/feed/"
     description = "Updates on changes and additions to police beat central."
 
-
     def items(self):
         return Entry.objects.published()[:5]
