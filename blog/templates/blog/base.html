@@ -34,17 +34,16 @@
 
 </head>
 <body>
-{% include './secs/nav.html' %}
+{% include 'blog/secs/nav.html' %}
 
 <main class="cd-main-content main-content">
     <div class="container">
         {% block body %}{% endblock %}
     </div>
 </main>
-{% include './secs/search.html' %}
-{% include './secs/footer.html' %}
-
-{% include './secs/toolbar.html' %}
+{% include 'blog/secs/search.html' %}
+{% include 'blog/secs/footer.html' %}
+{% include 'blog/secs/toolbar.html' %}
 
 <!-- Bootstrap core JavaScript
    ================================================== -->

@@ -127,7 +127,7 @@ a:hover {
     }
 
     /*.main-content {*/
-        /*margin-top: 0;*/
+    /*margin-top: 0;*/
     /*}*/
 
     .img-logo {
@@ -218,3 +218,27 @@ a:hover {
     margin-left: 40px;
 }
 
+
+.table-container
+{
+    width: 100%;
+    overflow-y: auto;
+    _overflow: auto;
+    margin: 0 0 1em;
+}
+table{border:0; border-collapse:collapse;}
+table td,table th{border:1px solid #999; padding:.5em 1em}
+/*添加IOS下滚动条*/
+.table-container::-webkit-scrollbar
+{
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+}
+
+.table-container::-webkit-scrollbar-thumb
+{
+    border-radius: 8px;
+    border: 3px solid #fff;
+    background-color: rgba(0, 0, 0, .3);
+}

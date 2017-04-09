@@ -98,7 +98,7 @@ jQuery(document).ready(function($){
 
     $(".entrybox table").addClass("table");
     $(".entrybox table").removeAttr("style");
-    $(".entrybox table").wrap('<div class="table-responsive"></div>')
+    $(".entrybox table").wrap('<div class="table-container"></div>')
 
     var backButton = $('#backTop'),
         scrollbar = $('html, body'),
