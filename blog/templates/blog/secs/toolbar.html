@@ -1,4 +1,4 @@
-<div class="toolbar">
+<div class="toolbar visible-lg">
     <a href="javascript:" class="toolbar-item">
         <span class="toolbar-btn">
             <i class="toolbar-icon fa fa-weixin" aria-hidden="true"></i>
@@ -7,12 +7,22 @@
         <span class="toolbar-layer toolbar-layer-weixin"></span>
     </a>
 
-    <a href="javascript:" class="toolbar-item">
+    {% if not request.user.is_authenticated %}
+        <a href="{% url 'blog:login' %}" class="toolbar-item">
         <span class="toolbar-btn">
             <i class="toolbar-icon fa fa-user" aria-hidden="true"></i>
             <span class="toolbar-text">Login</span>
         </span>
-    </a>
+        </a>
+    {% else %}
+        <a href="{% url 'blog:logout' %}" class="toolbar-item">
+        <span class="toolbar-btn">
+            <i class="toolbar-icon fa fa-user" aria-hidden="true"></i>
+            <span class="toolbar-text">Logout</span>
+        </span>
+        </a>
+    {% endif %}
+
     <a href="javascript:" class="toolbar-item">
         <span class="toolbar-btn">
             <i class="toolbar-icon fa fa-comment" aria-hidden="true"></i>

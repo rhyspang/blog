@@ -1,13 +1,17 @@
+from django.conf import settings
+from django.contrib import auth
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 from django.views import generic
 from haystack.forms import SearchForm
-from haystack.query import SearchQuerySet
-from haystack.views import SearchView
 
+from blog.form import LoginForm
 from blog.models import Entry, Tag, Category
 from . import models
-from django.conf import settings
 
 
 def global_settings(request):
@@ -110,3 +114,32 @@ def full_search(request):
         articles_list.append(item.object)
     return render(request, 'blog/search_result.html', locals())
 
+
+def login(request):
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        if not login_form.is_valid():
+            return HttpResponseRedirect(reverse('blog:login'))
+        username = login_form.cleaned_data['username']
+        password = login_form.cleaned_data['password']
+        user = authenticate(username=username, password=password)
+        if user is not None and user.is_active:
+            auth.login(request, user)
+            return HttpResponseRedirect(reverse('blog:index'))
+        else:
+            return render(request, 'blog/login.html', {'status': 'ERROR'})
+
+    else:
+        return render(request, 'blog/login.html', {'form': LoginForm})
+
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('blog:login'))
+
+
+def register(request):
+    if request.method == 'POST':
+        pass
+    else:
+        return render(request, 'blog/register.html')

@@ -1,0 +1,32 @@
+{% extends './base.html' %}
+
+{% load static %}
+{% block body %}
+
+    <link rel="stylesheet" href="{% static "blog/css/inputfield.css" %}">
+
+    <div class="login-panel">
+    <form action="{% url 'blog:login' %}" method="post">{% csrf_token  %}
+        <div class="field">
+            <input class="up-float" type="text" name="username" id="username" placeholder="Rhys Pang">
+            <label for="username">User</label>
+        </div>
+        <div class="field">
+            <input class="up-float" type="password" name="password" id="password" placeholder="password">
+            <label for="password">Password</label>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login
+        </button>
+        <button type="button" class="btn btn-warning">
+            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Forget password
+        </button>
+        <button type="button" class="btn btn-info" onclick="javascript:window.location.href='{% url 'blog:register' %}'" >
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Register
+        </button>
+
+    </form>
+        <hr>
+    </div>
+
+{% endblock %}

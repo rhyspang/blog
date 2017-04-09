@@ -24,4 +24,7 @@ urlpatterns = [
     url(r'^archive/(?P<year>\d{4})/(?P<month>\d{1,2})/$', views.show_by_archive, name='show_by_archive'),
 
     url(r'^search/$', full_search, name='search'),
+    url(r'^login/$', views.login, name='login'),
+    url(r'^logout/$', views.logout, name='logout'),
+    url(r'^register/$', views.register, name='register'),
 ]

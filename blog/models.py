@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -80,7 +81,6 @@ class Entry(models.Model):
 
 
 class Comment(models.Model):
-    name = models.CharField(max_length=120)
-    email = models.EmailField()
-    content = models.TextField()
+    user = models.ForeignKey(User)
     entry = models.ForeignKey(Entry)
+    content = models.TextField()
